@@ -1,0 +1,124 @@
+<html>
+<head>
+  <title>Quiz</title>
+  <style>
+    body {
+      font-family: Book Antiqua;
+      background-color: #fadde1;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color:#FFFFFF;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+ p {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    button {
+      display: block;
+      margin: 10px 0;
+      padding: 10px 20px;
+      background-color: #d0efff ;
+      color: #072F5F;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    button:hover {
+      background-color: #b5cae9;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Quiz!!</h1>
+    <p> Directions: choose the correct answer </p>
+    <div id="quiz"></div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: 'What is the capital of France?',
+        choices: ['Paris', 'London', 'Berlin', 'Madrid'],
+        answer: 'Paris'
+      },
+      {
+        question: 'Who painted the Mona Lisa?',
+        choices: ['Leonardo da Vinci', 'Pablo Picasso', 'Vincent van Gogh', 'Michelangelo'],
+        answer: 'Leonardo da Vinci'
+      },
+      {
+        question: 'What is 75+68?',
+        choices: ['140', '143', '141', '123'],
+        answer: '143'
+      },
+
+      {
+        question: 'Which of the following is a primary color?',
+        choices: ['Green', 'Orange', 'Yellow', 'Purple'],
+        answer: 'Yellow'
+      },
+
+      {
+        question: 'What is the chemical symbol for gold?',
+        choices: ['Au', 'Ag', 'Gd', 'Gl'],
+        answer: 'Au'
+      }
+
+    ];
+
+    const quizContainer = document.getElementById('quiz');
+
+    function loadQuiz() {
+      let quizHTML = '';quizData.forEach((data, index) => {
+        quizHTML += `
+          <div class="question">
+            <p>${index + 1}. ${data.question}</p>
+            <ul>
+              ${data.choices.map(choice => `<li><button onclick="checkAnswer('${choice}', '${data.answer}')">${choice}</button></li>`).join('')}
+      
+            </ul>
+          </div>
+        `;
+      });
+      quizContainer.innerHTML = quizHTML;
+    }
+
+    function checkAnswer(selectedAnswer, correctAnswer) {
+      if (selectedAnswer === correctAnswer) {
+        alert('Correct!');
+      } else {
+        alert('Wrong!');
+      }
+    }
+
+    loadQuiz();
+  </script>
+</body>
+</html>
